@@ -24,12 +24,26 @@ jobs:
     steps:
       - run: echo world
 
+  build:
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+      - checkout
+      - run:
+          name: "echo an env var that is part of our project"
+          command: |
+            echo $my_name
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
+  test-env-vars:
+    jobs:
+      - build 
+
   welcome:
     jobs:
-      - welcome/run
+      - welcome/run 
       - print_hello
       - print_world:
           requires:
