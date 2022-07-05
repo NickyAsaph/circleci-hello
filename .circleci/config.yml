@@ -3,11 +3,8 @@
 version: 2.1
 commands:
   print_pipeline_id:
-    parameters:
-      id:
-        type: string
     steps:
-      - run: echo << parameters.id >>
+      - run: echo ${CIRCLE_WORKFLOW_ID}
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -18,12 +15,12 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      - print_pipeline_id:
-            id: << parameters.id >>
+      - run: print_pipeline_id
+
 workflows:
   my_workflow:
     jobs:
-       - my_job
+      - my_job
       
 
  
