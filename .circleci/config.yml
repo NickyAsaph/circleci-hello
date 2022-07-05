@@ -19,7 +19,7 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - print_pipeline_id:
-            id: << parameters.id >>
+           id: << parameters.id >>
 workflows:
   my_workflow:
     jobs:
